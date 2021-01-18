@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties.Resources;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
@@ -41,6 +42,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	private Integer getSeconds(Duration cachePeriod) {
 		return (cachePeriod != null) ? (int) cachePeriod.getSeconds() : null;
 	}
+
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		//ここでaddViewControllerしたものは
+		//ParameterizableViewControllerっていうModelAndViewを返す昔ながらのControllerが使われる
+		//handleRequestInternalを見てみるといいかも
+
+	}
+
 
 	static class SpaPathResourceResolver extends PathResourceResolver {
 
