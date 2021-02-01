@@ -31,6 +31,11 @@ import epsilongtmyon.app.sandbox01.apispec.Post02Request;
  *  supportsParameterメソッドで使用するものが選択されている。
  *
  *
+ * HandlerMethodArgumentResolverは
+ *   RequestMappingHandlerAdapterが持っている
+ *     afterPropertiesSetから呼ばれる
+ *     getDefaultArgumentResolversメソッドで作られている
+ *     独自に追加したものはgetCustomArgumentResolversメソッドで追加される。
  *
  *
  */

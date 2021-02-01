@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<span th:text="${userAgent}"></span>
+
+	<form th:action="@{/sandbox02/get01}" method="get">
+		<button type="submit">Get01</button>
+	</form>
+
+	<form th:action="@{/sandbox02/post01}" method="post">
+		<button type="submit">Post01</button>
+	</form>
+</body>
+</html>
