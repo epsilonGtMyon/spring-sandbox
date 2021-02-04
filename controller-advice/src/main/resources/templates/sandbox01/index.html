@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Sandbox01</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<body>
+
+	<select>
+		<th:block th:each="b : ${bloodTypes}">
+			<option value="${b}" th:text="${b}"></option>>
+		</th:block>
+	</select>
+
+	<form th:action="@{/sandbox01/get01}" method="get"
+		th:object="${sandbox01Get01Form}">
+		<label> <input type="radio" th:field="*{value01}" value="1" />ON
+		</label> <label> <input type="radio" th:field="*{value01}" value="0" />OFF
+		</label>
+
+		<button type="submit">submit</button>
+	</form>
+</body>
+
+</html>
