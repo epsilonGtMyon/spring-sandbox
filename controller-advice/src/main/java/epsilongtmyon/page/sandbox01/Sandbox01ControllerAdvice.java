@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import epsilongtmyon.shared.formatter.FlagFormatter;
 
-//TODO basePackageClasses とかの適用条件はどこで見てるのか？
 /*
  * 1.3.7. Controller Advice
  * ControllerAdviceBean 経由で使われる？
@@ -50,7 +49,7 @@ public class Sandbox01ControllerAdvice {
 	 *         binderFactoryはどこで作られる？
 	 *           RequestMappingHandlerAdapterクラスでServletInvocableHandlerMethodのインスタンスを作った後
 	 *           getDataBinderFactoryメソッドで作ったものがセットされる
-	 *             ここでは@ControllerAdviceで条件に適したものから@InitBinderがついたメソッド
+	 *             ここでは@ControllerAdviceで条件に適したもの(isApplicableToBeanTypeで判断)から@InitBinderがついたメソッド
 	 *             あとはController自体についた@InitBinderがついたメソッド
 	 *             が選択される
 	 *             んで ServletRequestDataBinderFactoryが返される

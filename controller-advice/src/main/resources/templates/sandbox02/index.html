@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Sandbox01</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<body>
+
+
+	<form th:action="@{/sandbox02/get01}" method="get">
+		<button type="submit">submit</button>
+	</form>
+	<form th:action="@{/sandbox02/get02}" method="get">
+		<button type="submit">submit</button>
+	</form>
+
+
+
+	<pre>
+	[[${ex}]]
+	</pre>
+</body>
+
+</html>
