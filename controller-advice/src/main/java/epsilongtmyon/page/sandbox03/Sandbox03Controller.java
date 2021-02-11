@@ -39,7 +39,6 @@ public class Sandbox03Controller {
 	public String post01(
 			//RequestResponseBodyMethodProcessorが使われるのでRequestAdviceが使われる
 			@RequestBody Sandbox03HogeImpl1 hogetImpl1) {
-
 		return "xxx";
 	}
 
