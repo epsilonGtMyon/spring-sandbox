@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Sandbox01</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" th:src="@{/js/QueryString.js}"></script>
+</head>
+<body>
+	<input type="hidden" id="url" th:value="@{/sandbox03}" />
+	<section>
+		<div>
+			<label>value01: <input id="value01" type="text" />
+			</label>
+		</div>
+		<div>
+			<label>value02: <input id="value02" type="text" />
+			</label>
+		</div>
+
+		<button onClick="get01()">get01</button>
+		<button onClick="post01()">post01</button>
+	</section>
+
+	<script type="text/javascript">
+		function extract(){
+			const urlPrefix = document.getElementById('url').value;
+			const value01 = document.getElementById('value01').value;
+			const value02 = document.getElementById('value02').value;
+			return {
+				urlPrefix,
+				value01,
+				value02
+			}
+		}
+		async function get01() {
+			const { urlPrefix, value01, value02} = extract();
+
+
+			const param = {
+				value01,
+				value02
+			}
+
+			const x = await fetch(`${urlPrefix}/get01?${QueryString.stringify(param)}`, {
+				method: 'GET'
+			})
+		}
+
+		async function post01() {
+			const { urlPrefix, value01, value02} = extract();
+
+
+			const param = {
+				value01,
+				value02
+			}
+
+			const x = await fetch(`${urlPrefix}/post01`, {
+				method: 'POST',
+				headers: {
+				      'Content-Type': 'application/json'
+			    },
+			    body: JSON.stringify(param)
+			})
+		}
+	</script>
+</body>
+
+</html>

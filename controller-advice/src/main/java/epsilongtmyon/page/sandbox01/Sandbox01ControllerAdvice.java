@@ -33,17 +33,17 @@ import epsilongtmyon.shared.formatter.FlagFormatter;
 public class Sandbox01ControllerAdvice {
 
 	/*
-	 * ServletInvocableHandlerMethod#invokeAndHandle()
-	 *   親のInvocableHandlerMethod#invokeForRequest()
+	 * ServletInvocableHandlerMethod#invokeAndHandle
+	 *   親のInvocableHandlerMethod#invokeForRequest
 	 *       InvocableHandlerMethod#getMethodArgumentValues
-	 *         からのHandlerMethodArgumentResolverComposite#resolveArgument()
+	 *         からのHandlerMethodArgumentResolverComposite#resolveArgument
 	 *
 	 *         つまりは引数解決のタイミングで実行される
 	 *
 	 *         今回のケースだと
-	 *           ModelAttributeMethodProcessor#resolveArgument()
+	 *           ModelAttributeMethodProcessor#resolveArgument
 	 *           の中でresolveArgumentの引数であるbinderFactory
-	 *             InitBinderDataBinderFactory#initBinder()
+	 *             InitBinderDataBinderFactory#initBinder
 	 *             が呼ばれてここで@InitBinderのメソッドが呼ばれる
 	 *
 	 *         binderFactoryはどこで作られる？
@@ -55,7 +55,7 @@ public class Sandbox01ControllerAdvice {
 	 *             んで ServletRequestDataBinderFactoryが返される
 	 *
 	 *
-	 *           RequestMappingHandlerAdapter#getDefaultInitBinderArgumentResolvers()
+	 *           RequestMappingHandlerAdapter#getDefaultInitBinderArgumentResolvers
 	 *           で作ってる引数は渡せるみたい
 	 *
 	 */
@@ -65,7 +65,7 @@ public class Sandbox01ControllerAdvice {
 	}
 
 	/*
-	 * RequestMappingHandlerAdapter#invokeHandlerMethod()の
+	 * RequestMappingHandlerAdapter#invokeHandlerMethodの
      *   ModelFactory#initModel
      *     ModelFactory#invokeModelAttributeMethods
      *       ここで@ModelAttributeのメソッドを実行して
@@ -75,7 +75,6 @@ public class Sandbox01ControllerAdvice {
 	 */
 	@ModelAttribute("bloodTypes")
 	public List<String> bloodTypes() {
-		Thread.dumpStack();
 		return List.of("A", "B", "AB", "O");
 	}
 }

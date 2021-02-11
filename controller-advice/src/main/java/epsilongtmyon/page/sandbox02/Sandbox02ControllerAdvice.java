@@ -46,8 +46,6 @@ public class Sandbox02ControllerAdvice {
 
 	@ExceptionHandler({ Sandbox02AException.class })
 	public String handle(Sandbox02AException ex, Model model) {
-		Thread.dumpStack();
-
 		try (StringWriter sw = new StringWriter();
 				PrintWriter pw = new PrintWriter(sw)) {
 			ex.printStackTrace(pw);
@@ -64,8 +62,6 @@ public class Sandbox02ControllerAdvice {
 	@ExceptionHandler({ Sandbox02BException.class })
 	@ResponseBody
 	public String handle2(Sandbox02BException ex) {
-		Thread.dumpStack();
-
 		try (StringWriter sw = new StringWriter();
 				PrintWriter pw = new PrintWriter(sw)) {
 			ex.printStackTrace(pw);
