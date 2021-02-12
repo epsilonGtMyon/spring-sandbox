@@ -29,6 +29,7 @@ public class Sandbox03Controller {
 		System.out.println(value01);
 
 		Sandbox03Response01 resp = new Sandbox03Response01();
+		value01.ifPresent(resp::setValue01);
 		return resp;
 	}
 
@@ -39,6 +40,7 @@ public class Sandbox03Controller {
 	public String post01(
 			//RequestResponseBodyMethodProcessorが使われるのでRequestAdviceが使われる
 			@RequestBody Sandbox03HogeImpl1 hogetImpl1) {
+		System.out.println(hogetImpl1);
 		return "xxx";
 	}
 

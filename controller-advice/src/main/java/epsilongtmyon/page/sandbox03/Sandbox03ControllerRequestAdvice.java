@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdvice;
  *
  * RequestResponseBodyAdviceChainでワンクッションはさんで
  * AbstractMessageConverterMethodArgumentResolver#readWithMessageConverters で呼ばれる
- * なのでハンドラーメソッドの引数が
+ * なのでハンドラーメソッドの引数がこれのサブクラスである
  *   ・HttpEntityMethodProcessor
  *   ・RequestResponseBodyMethodProcessor
  * あたりのもので処理されるときに呼ばれる
@@ -27,6 +27,11 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdvice;
  *   そもそもHttpMessageConverter が見つからないと何も呼ばれない
  *
  * RequestResponseBodyAdviceChainで複数のものが集約された状態で管理されている
+ *
+ * あと適用対象のフィルタリングは
+ * RequestResponseBodyAdviceChain#getMatchingAdviceの中で
+ * ControllerAdviceBean#isApplicableToBeanTypeが呼ばれることで行われている
+ *
  */
 @ControllerAdvice(basePackageClasses = Sandbox03Controller.class)
 public class Sandbox03ControllerRequestAdvice implements RequestBodyAdvice {
