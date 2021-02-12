@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Sandbox01</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+	<input type="hidden" id="url" th:value="@{/sandbox01}" />
+	<form th:action="@{/sandbox01/get01}" method="GET">
+		<div>
+			<label>value01: <input id="value01" type="text" />
+			</label>
+		</div>
+
+		<button type="submit">GET01</button>
+		<button type="button" onClick="get02()">AjaxGET02</button>
+	</form>
+
+
+
+	<script type="text/javascript">
+		function extract(){
+			const urlPrefix = document.getElementById('url').value;
+			const value01 = document.getElementById('value01').value;
+			return {
+				urlPrefix,
+				value01
+			}
+		}
+		async function get02() {
+			const { urlPrefix, value01} = extract();
+
+
+			const x = await fetch(`${urlPrefix}/get02?value01=${value01}`, {
+				method: 'GET'
+			})
+		}
+
+	</script>
+</body>
+
+</html>
