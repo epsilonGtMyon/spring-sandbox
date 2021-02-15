@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Sandbox01</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" th:src="@{/js/QueryString.js}" defer></script>
+<script type="text/javascript" th:src="@{/js/HttpClient.js}" defer></script>
+<body>
+
+	<input type="hidden" id="url" th:value="@{/sandbox01}">
+
+	<div>
+
+
+		<button onClick="get01()">Get01</button>
+	</div>
+
+	<script type="text/javascript">
+		const url = document.getElementById("url").value;
+
+		async function get01(){
+			const r = await HttpClient.get(`${url}/get01`)
+			console.log(r)
+		}
+
+	</script>
+</body>
+
+</html>
