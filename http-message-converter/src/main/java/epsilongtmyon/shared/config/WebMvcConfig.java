@@ -19,9 +19,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-		converters.add(new OneLineCsvMessageConverter());
+		//優先順位を上げるために先頭に割り込む
+		converters.add(0, new OneLineCsvMessageConverter());
 	}
-
-
 
 }

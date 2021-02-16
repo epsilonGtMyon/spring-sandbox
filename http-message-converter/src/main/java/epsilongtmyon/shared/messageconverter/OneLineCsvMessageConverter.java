@@ -4,8 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
@@ -14,7 +17,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 
-public class OneLineCsvMessageConverter implements HttpMessageConverter<OneLineCsvAsignable> {
+public class OneLineCsvMessageConverter implements HttpMessageConverter<OneLineCsv> {
 
 	@Override
 	public List<MediaType> getSupportedMediaTypes() {
@@ -25,17 +28,17 @@ public class OneLineCsvMessageConverter implements HttpMessageConverter<OneLineC
 	//read
 	@Override
 	public boolean canRead(Class<?> clazz, MediaType mediaType) {
-		return OneLineCsvAsignable.class.isAssignableFrom(clazz);
+		return OneLineCsv.class.isAssignableFrom(clazz);
 	}
 
 	@Override
-	public OneLineCsvAsignable read(Class<? extends OneLineCsvAsignable> clazz, HttpInputMessage inputMessage)
+	public OneLineCsv read(Class<? extends OneLineCsv> clazz, HttpInputMessage inputMessage)
 			throws IOException, HttpMessageNotReadableException {
 
 		InputStream is = inputMessage.getBody();
 		try (InputStreamReader r = new InputStreamReader(is, StandardCharsets.UTF_8);
 				BufferedReader br = new BufferedReader(r)) {
-			OneLineCsvAsignable instance = clazz.getConstructor().newInstance();
+			OneLineCsv instance = clazz.getConstructor().newInstance();
 
 			String[] split = br.readLine().split(",");
 			for (int i = 0; i < split.length; i++) {
@@ -52,15 +55,17 @@ public class OneLineCsvMessageConverter implements HttpMessageConverter<OneLineC
 	//write
 	@Override
 	public boolean canWrite(Class<?> clazz, MediaType mediaType) {
-		// TODO 自動生成されたメソッド・スタブ
-		return false;
+		return OneLineCsv.class.isAssignableFrom(clazz);
 	}
 
 	@Override
-	public void write(OneLineCsvAsignable t, MediaType contentType, HttpOutputMessage outputMessage)
+	public void write(OneLineCsv t, MediaType contentType, HttpOutputMessage outputMessage)
 			throws IOException, HttpMessageNotWritableException {
-		// TODO 自動生成されたメソッド・スタブ
 
+		OutputStream out = outputMessage.getBody();
+		OutputStreamWriter w = new OutputStreamWriter(out, StandardCharsets.UTF_8);
+		w.write(t.getValues().stream().collect(Collectors.joining(",")));
+		w.flush();
 	}
 
 }

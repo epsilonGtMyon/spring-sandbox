@@ -1,13 +1,14 @@
 package epsilongtmyon.page.sandbox01;
 
+import java.util.List;
+
 import epsilongtmyon.shared.messageconverter.OneLineCsv;
 
-public class Sandbox01CsvRequest implements OneLineCsv {
+public class Sandbox01CsvResponse implements OneLineCsv {
 
 	private String value01;
 	private String value02;
 	private String value03;
-	private String value04;
 
 	public String getValue01() {
 		return value01;
@@ -33,37 +34,14 @@ public class Sandbox01CsvRequest implements OneLineCsv {
 		this.value03 = value03;
 	}
 
-	public String getValue04() {
-		return value04;
-	}
-
-	public void setValue04(String value04) {
-		this.value04 = value04;
-	}
-
 	@Override
 	public String toString() {
-		return "Sandbox01CsvRequest [value01=" + value01 + ", value02=" + value02 + ", value03=" + value03
-				+ ", value04=" + value04 + "]";
+		return "Sandbox01CsvResponse [value01=" + value01 + ", value02=" + value02 + ", value03=" + value03 + "]";
 	}
 
 	@Override
-	public void asignValue(int index, String value) {
-		switch (index) {
-		case 0:
-			value01 = value;
-			break;
-		case 1:
-			value02 = value;
-			break;
-		case 2:
-			value03 = value;
-			break;
-		case 3:
-			value04 = value;
-			break;
-		}
-
+	public List<String> getValues() {
+		return List.of(value01, value02, value03);
 	}
 
 }

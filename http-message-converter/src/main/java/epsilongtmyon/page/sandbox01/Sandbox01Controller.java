@@ -35,10 +35,13 @@ public class Sandbox01Controller {
 	}
 
 	@PostMapping("postCsv")
-	public Map<String, Object> postCsv(
+	public Sandbox01CsvResponse postCsv(
 			@RequestBody Sandbox01CsvRequest request) {
-		System.out.println(request);
-		return Map.of("aaa", request.toString());
+		Sandbox01CsvResponse resp = new Sandbox01CsvResponse();
+		resp.setValue01(request.getValue01());
+		resp.setValue02(request.getValue02());
+		resp.setValue03(request.getValue03());
+		return resp;
 	}
 
 	//TODO WebMvcConfigurationSupportあたり←これはboot?
