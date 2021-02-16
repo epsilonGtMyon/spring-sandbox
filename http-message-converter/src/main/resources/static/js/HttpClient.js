@@ -30,4 +30,18 @@ class HttpClient {
 
     return await response.json();
   }
+
+
+  static async postDirect(url, {headers = {}, body = ""}) {
+    const endpointUrl = url;
+
+    const response = await fetch(endpointUrl, {
+      method: "POST",
+      credentials: "include",
+      headers,
+      body,
+    });
+
+    return await response.json();
+  }
 }

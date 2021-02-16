@@ -12,20 +12,58 @@
 
 	<input type="hidden" id="url" th:value="@{/sandbox01}">
 
-	<div>
+	<form>
+		<div>
+			<label> <input type="text" id="value01" />
+			</label>
+		</div>
+		<div>
+			<label> <input type="text" id="value02" />
+			</label>
+		</div>
 
 
-		<button onClick="get01()">Get01</button>
-	</div>
+		<button type="button" onClick="get01()">Get01</button>
+		<button type="button" onClick="post01()">Post01</button>
+		<button type="button" onClick="postCsv()">PostCsv</button>
+	</form>
 
 	<script type="text/javascript">
 		const url = document.getElementById("url").value;
 
-		async function get01(){
+		function getValues(){
+			const value01 = document.getElementById("value01").value;
+			const value02 = document.getElementById("value02").value;
+			return {
+				value01,
+				value02,
+			}
+		}
+
+		async function get01() {
 			const r = await HttpClient.get(`${url}/get01`)
 			console.log(r)
 		}
 
+		async function post01() {
+			const param = getValues();
+			const r = await HttpClient.postAsJson(`${url}/post01`, param)
+			console.log(r)
+		}
+
+		async function postCsv() {
+			const values = getValues();
+
+			const param = {
+				headers : {
+			      "Content-type": "text/csv",
+				},
+				body: "aaa,bbb,ccc,ddd,eee"
+			}
+
+			const r = await HttpClient.postDirect(`${url}/postCsv`, param)
+			console.log(r)
+		}
 	</script>
 </body>
 
