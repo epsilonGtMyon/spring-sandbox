@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -62,6 +63,12 @@ public class OneLineCsvMessageConverter implements HttpMessageConverter<OneLineC
 	public void write(OneLineCsv t, MediaType contentType, HttpOutputMessage outputMessage)
 			throws IOException, HttpMessageNotWritableException {
 
+		//ヘッダーの設定
+		//AbstractHttpMessageConverterを見るともう少し 細かい方法でヘッダーを設定している。
+		HttpHeaders headers = outputMessage.getHeaders();
+		headers.setContentType(contentType);
+
+		//ボディの設定
 		OutputStream out = outputMessage.getBody();
 		OutputStreamWriter w = new OutputStreamWriter(out, StandardCharsets.UTF_8);
 		w.write(t.getValues().stream().collect(Collectors.joining(",")));

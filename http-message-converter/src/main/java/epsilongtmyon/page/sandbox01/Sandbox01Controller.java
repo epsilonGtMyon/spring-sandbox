@@ -43,6 +43,4 @@ public class Sandbox01Controller {
 		resp.setValue03(request.getValue03());
 		return resp;
 	}
-
-	//TODO WebMvcConfigurationSupportあたり←これはboot?
 }
