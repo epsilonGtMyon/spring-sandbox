@@ -18,6 +18,17 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 
+
+/*
+ * GenericHttpMessageConverterの場合は引数が増えている
+ * AbstractGenericHttpMessageConverterを継承しているのが多い
+ *
+ * 1.ClassではなくTypeを受け取る
+ * 2.MethodParameter#getContainingClass の情報をもらうことができる
+ *
+ * 1.は どういう違いがあるのだろうか？？
+ *
+ */
 public class OneLineCsvMessageConverter implements HttpMessageConverter<OneLineCsv> {
 
 	@Override
