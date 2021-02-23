@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Sandbox01Step01Form implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	/** 姓 */
 	private String familyName;
 

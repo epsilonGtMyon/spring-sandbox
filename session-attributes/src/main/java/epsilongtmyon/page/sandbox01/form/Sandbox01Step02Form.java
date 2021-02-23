@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Sandbox01Step02Form implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	/** 趣味 */
 	private String hobby;
 
