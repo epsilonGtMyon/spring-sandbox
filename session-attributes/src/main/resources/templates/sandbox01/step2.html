@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>sandbox01:step2</title>
+</head>
+<body>
+	<h1>登録</h1>
+	<h2>ステップ２</h2>
+
+	<div>
+		<div>ステップ1情報</div>
+
+		<div>
+			姓：<span th:text="${sandbox01Session.familyName}"></span>
+		</div>
+
+		<div>
+			名：<span th:text="${sandbox01Session.firstName}"></span>
+		</div>
+
+	</div>
+
+	<hr />
+
+	<form th:action="@{/sandbox01/post02}" method="post"
+		th:object="${sandbox01Step02Form}">
+
+		<div>
+			<label> 趣味 <input th:field="*{hobby}" />
+			</label>
+		</div>
+
+
+		<button type="submit"> 登録</button>
+	</form>
+
+	<script type="text/javascript">
+		function setValueIfEmpty(id, value) {
+			const node = document.getElementById(id);
+			if (node.value === '') {
+				node.value = value;
+			}
+		}
+
+		setValueIfEmpty('hobby', '釣り');
+	</script>
+</body>
+</html>

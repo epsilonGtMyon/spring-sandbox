@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>sandbox01:step3</title>
+</head>
+<body>
+	<h1>登録</h1>
+	<h2>ステップ３</h2>
+
+	よろしいですか？
+	<div>
+		<div>ステップ1情報</div>
+
+		<div>
+			姓：<span th:text="${sandbox01Session.familyName}"></span>
+		</div>
+
+		<div>
+			名：<span th:text="${sandbox01Session.firstName}"></span>
+		</div>
+
+	</div>
+	<div>
+		<div>ステップ2情報</div>
+
+		<div>
+			趣味：<span th:text="${sandbox01Session.hobby}"></span>
+		</div>
+	</div>
+
+	<form th:action="@{/sandbox01/post03}" method="post">
+		<button type="submit">登録</button>
+	</form>
+</body>
+</html>

@@ -2,9 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>sandbox01:index</title>
 </head>
 <body>
 
+	<h1>登録</h1>
+	<h2>ステップ１</h2>
+	<form th:action="@{/sandbox01/post01}" method="post"
+		th:object="${sandbox01Step01Form}">
+
+		<div>
+			<label> 姓 <input th:field="*{familyName}" />
+			</label>
+		</div>
+
+
+		<div>
+			<label> 名 <input th:field="*{firstName}" />
+			</label>
+		</div>
+
+		<button type="submit">登録</button>
+	</form>
+
+	<script type="text/javascript">
+		function setValueIfEmpty(id, value) {
+			const node = document.getElementById(id);
+			if (node.value === '') {
+				node.value = value;
+			}
+		}
+
+		setValueIfEmpty('familyName', '山田');
+		setValueIfEmpty('firstName', '太郎');
+	</script>
 </body>
 </html>
