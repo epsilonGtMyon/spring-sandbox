@@ -47,6 +47,13 @@ import epsilongtmyon.page.sandbox01.form.Sandbox01Step02Form;
  * SessionAttributeStore というインターフェース経由で行われるようになっているので
  * HttpServletRequest以外にも保存はできそう
  *
+ *
+ * ---------------------
+ * @SessionAttribute
+ * @RequestAttribute
+ * とは別
+ * これは AbstractNamedValueMethodArgumentResolver(HandlerMethodArgumentResolver)
+ * 経由で引数解決するだけの属性
  */
 @Controller
 @RequestMapping("sandbox01")
