@@ -15,8 +15,7 @@ import epsilongtmyon.page.sandbox01.form.Sandbox01Step02Form;
  * SessionAttributesHandlerというクラスがポイント
  *
  * RequestMappingHandlerAdapterクラスで作られる
- * (ハンドラーのBeanType つまりControllerのこと？　をキーとしたConcurrentHashMapでキャッシュされてる
- *   →なのでControllerまたぎは無理そう)
+ * (ハンドラーのBeanType つまりControllerのこと？　をキーとしたConcurrentHashMapでキャッシュされてる)
  * getModelFactoryメソッドでModelFactory を作成するときに
  * SessionAttributesHandlerも作成されてるModelFactory に渡されている
  *
@@ -43,9 +42,21 @@ import epsilongtmyon.page.sandbox01.form.Sandbox01Step02Form;
  * knownNamesには
  * アノテーションのnamesの他にisHandlerSessionAttribute呼び出し時にも追加が行われている
  *
+ * (予想)
+ * セッションに保存する属性の名前は注意したほうがよさそう、
+ * ・loginUserとかグローバルで使われている名前にしたら complete時に消されそう...
+ * ・complete呼ぶ前に メニューから別画面に遷移したときも
+ *   別画面の@SessionAttributeの属性とバッティングしたら危ない気がする..
+ * DefaultSessionAttributeStore#getAttributeNameInSession をオーバーライドして工夫すればいいのかな
+ *   requestのattributeにControllerのBean名を保存するようにしておいてそれをプレフィックスにするとか
+ *
+ *
+ *
  * セッションへの保存は
  * SessionAttributeStore というインターフェース経由で行われるようになっているので
  * HttpServletRequest以外にも保存はできそう
+ *
+ *
  *
  *
  * ---------------------
