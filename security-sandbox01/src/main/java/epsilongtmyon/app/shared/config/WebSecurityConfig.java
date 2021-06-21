@@ -1,8 +1,11 @@
 package epsilongtmyon.app.shared.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import epsilongtmyon.app.shared.security.MyUserDetailsService;
 
 /*
  * @EnableWebSecurityをつけて
@@ -46,4 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	}
 
+	@Bean
+	public MyUserDetailsService userDetailsService() {
+		return new MyUserDetailsService();
+	}
 }
