@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				.and()
 				.formLogin()
+					.loginPage("/login").permitAll()
 		//loginPageを省略した場合は
 		//DefaultLoginPageGeneratingFilter でログインページが生成される
 

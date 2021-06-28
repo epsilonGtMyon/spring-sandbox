@@ -23,14 +23,14 @@ public class MyUserDetailsService implements UserDetailsService, UserDetailsPass
 	private final ConcurrentHashMap<String, MyUser> db = new ConcurrentHashMap<>(
 			Map.of(
 					"user01", new MyUser("user01", "{noop}abc"),
-					"user02", new MyUser("user02", "{noop}def")
-			));
+					"user02", new MyUser("user02", "{noop}def")));
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		MyUser myUser = db.get(username);
 		if (myUser == null) {
-			return null;
+			//見つからないときはこれを投げる
+			throw new UsernameNotFoundException(username);
 		}
 		return new User(myUser.userId, myUser.passsword, new ArrayList<>());
 	}
