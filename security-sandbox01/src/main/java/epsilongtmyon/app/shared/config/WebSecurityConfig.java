@@ -28,6 +28,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/*
 	 * これをオーバーライドして設定する
+	 *
+	 * Remember-Meメモ
+	 *
+	 * rememberMe()を呼ぶと有効化される
+	 * ログイン成功時にトークン発行がされるみたい(ユーザー/パスワードの認証だとsuccessfulAuthentication)
+	 * AbstractRememberMeServices#rememberMeRequested を見たらわかるがリクエストのパラメータにremember-meがあってtrueになる値であれば みなすらしい
+	 * 細かい設定はRememberMeConfigurer
+	 *
+	 *
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -40,6 +49,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.formLogin()
 					.loginPage("/login").permitAll()
+				.and()
+
+					.rememberMe()
+
 		//loginPageを省略した場合は
 		//DefaultLoginPageGeneratingFilter でログインページが生成される
 

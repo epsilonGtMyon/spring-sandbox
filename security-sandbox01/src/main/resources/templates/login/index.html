@@ -9,13 +9,21 @@
 <body>
 
 	<form th:action="@{/login}" method="post">
-		<label> ユーザー: <input type="text" name="username" />
-		</label>
+		<div>
+			<label> ユーザー: <input type="text" name="username" />
+			</label>
+		</div>
 
-		<label>パスワード: <input type="password" name="password" />
-		</label>
+		<div>
+			<label>パスワード: <input type="password" name="password" />
+			</label>
+		</div>
 
-
+		<div>
+			<label><input type="checkbox" name="remember-me" />
+				RememberMe
+			</label>
+		</div>
 		<button type="submit">ログイン</button>
 	</form>
 </body>
