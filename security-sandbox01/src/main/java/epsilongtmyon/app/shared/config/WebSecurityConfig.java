@@ -29,13 +29,45 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	/*
 	 * これをオーバーライドして設定する
 	 *
+	 * -------------------
 	 * Remember-Meメモ
 	 *
 	 * rememberMe()を呼ぶと有効化される
-	 * ログイン成功時にトークン発行がされるみたい(ユーザー/パスワードの認証だとsuccessfulAuthentication)
+	 * ログイン成功時にcookieが発行がされるみたい
+	 * (ユーザー/パスワードの認証だとsuccessfulAuthenticationで
+	 * でRememberMeServices#loginSuccess)
 	 * AbstractRememberMeServices#rememberMeRequested を見たらわかるがリクエストのパラメータにremember-meがあってtrueになる値であれば みなすらしい
 	 * 細かい設定はRememberMeConfigurer
 	 *
+	 * セッション切れてからRememberMeで再ログインする処理は
+	 * RememberMeAuthenticationFilterで行われる
+	 * RememberMeServices#autoLogin で AuthenticationManagerに渡すようのtokenが作られる
+	 * つくり方はRememberMeServicesの実装による
+	 *
+	 * 認証はRememberMeAuthenticationProviderでキーハッシュの比較をするだけ
+	 *
+	 * RememberMeServices
+	 * ・TokenBasedRememberMeServices
+	 * デフォルトはこっち (PersistentTokenRepositoryがセットされてないならこちらが使われる)
+	 * onLoginSuccessでusername、有効期限、ハッシュ済パスワード、キーからMD5を使って署名を生成しcookieにセット
+	 * autoLoginの時はcookieのユーザー名をもとにUserDetailsServiceからUserDetailsを取得して
+	 * 照合とかをする感じ
+	 *
+	 * ・PersistentTokenBasedRememberMeServices
+	 * (PersistentTokenRepositoryをセットした場合はこちらが使われる)
+	 * TokenBasedRememberMeServicesだとユーザー名やパスワード(のハッシュ)の断片的な情報がcookieに含まれるが
+	 * こちらはそうではない
+	 * onLoginSuccess でPersistentTokenRepository にトークンとしてユーザー名などを保存するが
+	 * そのキー情報にはランダムに生成した値を使いcookieにはそれをセットする
+	 * autoLoginの時にはcookieのキー情報をもとにPersistentTokenRepositoryからトークンを取得し
+	 * トークのユーザー名を使ってUserDetailsServiceからUserDetailsを取得する
+	 * という流れ
+	 *
+	 * PersistentTokenRepositoryの実装は
+	 * ・InMemoryTokenRepositoryImpl(インメモリ)
+	 * ・JdbcTokenRepositoryImpl(データベース)
+	 * が用意されている。
+	 * -------------------
 	 *
 	 */
 	@Override
