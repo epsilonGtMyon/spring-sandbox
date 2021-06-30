@@ -30,6 +30,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * これをオーバーライドして設定する
 	 *
 	 * -------------------
+	 * Headerメモ
+	 *
+	 * Header関係はHeaderWriterFilterで出力される
+	 *
+	 * これはHeaderWriterに委譲している。
+	 *
+	 * 設定方法とかはHeadersConfigurerを見るとよさそう
+	 * 下の方にオプションのクラスがたくさん定義されているが
+	 * コンストラクタでenable()ってしているのがデフォルトで有効になっているやつっぽい
+	 * -------------------
+	 * Logoutメモ
+	 * LogoutFilterでログアウトを行う
+	 * LogoutHandlerに委譲している
+	 *
+	 * CompositeLogoutHandlerが使われていて
+	 * ・RememberMeのCookieの削除
+	 * ・CSRFトークンの削除
+	 * ・セッション無効化
+	 * などをしている
+	 *
+	 * セットされていなかったが
+	 * CookieClearingLogoutHandlerを使うと
+	 * ログアウト時に消去するCookieを設定することができる。
+	 *
+	 * -------------------
 	 * Remember-Meメモ
 	 *
 	 * rememberMe()を呼ぶと有効化される
@@ -80,10 +105,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 				.and()
 				.formLogin()
-					.loginPage("/login").permitAll()
+				.loginPage("/login").permitAll()
 				.and()
 
-					.rememberMe()
+				.rememberMe()
 
 		//loginPageを省略した場合は
 		//DefaultLoginPageGeneratingFilter でログインページが生成される
