@@ -82,16 +82,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * (PersistentTokenRepositoryをセットした場合はこちらが使われる)
 	 * TokenBasedRememberMeServicesだとユーザー名やパスワード(のハッシュ)の断片的な情報がcookieに含まれるが
 	 * こちらはそうではない
-	 * onLoginSuccess でPersistentTokenRepository にトークンとしてユーザー名などを保存するが
-	 * そのキー情報にはランダムに生成した値を使いcookieにはそれをセットする
+	 *
+	 * ランダムなシリーズと
+	 * ランダムなトークンを使う
+	 * onLoginSuccess にPersistentTokenRepository にシリーズをキーに トークンやユーザー名などを値に保存する
+	 * Cookieにもそれを保存する
+	 *
 	 * autoLoginの時にはcookieのキー情報をもとにPersistentTokenRepositoryからトークンを取得し
-	 * トークのユーザー名を使ってUserDetailsServiceからUserDetailsを取得する
+	 * トークンの値が一致していることを検証し
+	 * トークンのユーザー名を使ってUserDetailsServiceからUserDetailsを取得する
+	 *
+	 * この自動ログインの時にランダムトークンの値を更新している
+	 * こうすることでトークンを盗んだ誰かが自動ログインすることで、サーバーに保存されているトークン値が更新されるので
+	 * 自分が自動ログインしたときに トークンの盗難を検知することができる。
+	 *
 	 * という流れ
+	 * また
 	 *
 	 * PersistentTokenRepositoryの実装は
 	 * ・InMemoryTokenRepositoryImpl(インメモリ)
 	 * ・JdbcTokenRepositoryImpl(データベース)
 	 * が用意されている。
+	 *
+	 * あとトークンの生成に使うキーはデフォルトだと起動時にランダムなUUIDが生成されるので
+	 * 再起動すると トークンを使った自動ログインができなくなってしまうので
+	 * 実際に使うときはトークンをストレージなどに保存することも検討
 	 * -------------------
 	 *
 	 */
