@@ -115,7 +115,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//ここの細かい設定方法は よくわからんのでこれからの課題
 		http
 				.authorizeRequests()
-				.antMatchers("/api/public/*").permitAll()
+				.antMatchers("/api/public/**").permitAll()
 				.anyRequest().authenticated()
 
 				.and()
