@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div>
+		<form th:action="@{/sandbox01}">
+			<div>
+				value01: <input type="text" name="value01" />
+			</div>
+
+
+			<button id="getAjax" type="button">getAjax</button>
+			<button id="postAjaxJson" type="button">postAjaxJson</button>
+			<button id="postSubmit" type="submit">postSubmit</button>
+		</form>
+
+	</div>
+
+	<script type="text/javascript">
+		(function(){
+			const urlPrefix = '[[@{/}]]';
+			const getAjaxButton = document.getElementById('getAjax')
+			const postAjaxJsonButton = document.getElementById('postAjaxJson')
+
+			getAjax.addEventListener('click', async () => {
+				const resp = await fetch(`${urlPrefix}sandbox01/executeGet`);
+				console.log(resp)
+			})
+
+			postAjaxJsonButton.addEventListener('click', async () => {
+				const resp = await fetch(`${urlPrefix}sandbox01/executeAjaxPost`, {
+					method: 'POST',
+				    headers: {
+				        'Content-Type': 'application/json'
+				    },
+					body: '{}'
+				});
+				console.log(resp)
+			})
+
+		})()
+	</script>
+</body>
+</html>
