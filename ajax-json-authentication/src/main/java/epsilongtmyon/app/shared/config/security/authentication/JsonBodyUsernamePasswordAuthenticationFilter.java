@@ -34,9 +34,8 @@ public class JsonBodyUsernamePasswordAuthenticationFilter extends UsernamePasswo
 
 	private UsernamePasswordAuthenticationToken createToken(HttpServletRequest request, HttpServletResponse response) {
 		final ObjectMapper mapper = new ObjectMapper();
-		final AuthRequestBody readValue;
 		try {
-			readValue = mapper.readValue(request.getInputStream(), AuthRequestBody.class);
+			final AuthRequestBody readValue = mapper.readValue(request.getInputStream(), AuthRequestBody.class);
 			final String username = readValue.username;
 			final String password = readValue.password;
 

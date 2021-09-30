@@ -23,7 +23,6 @@
 				name="password" />
 			</label>
 		</div>
-		<button type="submit">login</button>
 		<button type="button" id="login">login</button>
 	</form>
 
@@ -47,11 +46,19 @@
 				        'Content-Type': 'application/json',
 				        'X-CSRF-TOKEN':  csrfToken
 				    },
-				    body: {
+				    body: JSON.stringify({
 				    	username,
 				    	password
-				    }
+				    })
 				})
+				const respBodyText = await resp.text()
+				const respBody = JSON.parse(respBodyText)
+
+				if (respBody.authenticationResult) {
+					location.href = `${baseUrl}home`
+				} else {
+					window.alert('login failed')
+				}
 			})
 		})()
 	</script>

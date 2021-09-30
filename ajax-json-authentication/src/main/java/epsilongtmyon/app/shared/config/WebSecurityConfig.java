@@ -17,10 +17,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.anyRequest().authenticated();
 
+		//http.addFilterAt で起きる問題を解決するために
+		//JsonBodyLoginConfigurer を作成し、そちらを適用する。
 		http.apply(new JsonBodyLoginConfigurer<>())
-				.loginProcessingUrl("/api/login")
+				.loginPage("/login")
+				.loginProcessingUrl("/login")
+				.permitAll()
 				.successHandler(new JsonBodyAuthenticationSuccessHandler())
 				.failureHandler(new JsonBodyAuthenticationFailureHandler());
+
+
+		//このやり方だと AbstractAuthenticationFilterConfigurer#configure が呼ばれないので
+		//諸々のオブジェクトがセットされない
+		//例えば、SessionAuthenticationStrategyが変更されないのでログイン成功時にセッションIDが変更されなかったりする。
+		//JsonBodyUsernamePasswordAuthenticationFilter f = new JsonBodyUsernamePasswordAuthenticationFilter();
+		//http.addFilterAt(f, UsernamePasswordAuthenticationFilter.class);
 
 	}
 

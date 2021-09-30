@@ -14,6 +14,11 @@ public class JsonBodyLoginConfigurer<H extends HttpSecurityBuilder<H>> extends
 	}
 
 	@Override
+	public JsonBodyLoginConfigurer<H> loginPage(String loginPage) {
+		return super.loginPage(loginPage);
+	}
+
+	@Override
 	protected RequestMatcher createLoginProcessingUrlMatcher(String loginProcessingUrl) {
 		return new AntPathRequestMatcher(loginProcessingUrl, "POST");
 	}
