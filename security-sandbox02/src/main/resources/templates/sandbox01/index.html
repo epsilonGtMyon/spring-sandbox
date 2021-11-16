@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandbox01</title>
+</head>
+<body>
+	<a th:href="@{home}">home</a>
+	<main>
+		sandbox01
+
+		<button id="hello">Hello</button>
+	</main>
+
+	<script type="text/javascript">
+		(function(){
+
+			const helloDom = document.getElementById('hello');
+			helloDom.addEventListener('click', async () => {
+				const url = '/sandbox01/hello'
+
+				const r = await fetch(url);
+				const rr = await r.text()
+				console.log(rr)
+				alert(rr)
+
+			});
+
+
+		})()
+	</script>
+</body>
+</html>
