@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+
+	<bean id="bean1" class="app.sandbox03.Bean1">
+		<constructor-arg name="name" value="bean1" />
+	</bean>
+	<bean id="bean2" class="app.sandbox03.Bean2">
+		<constructor-arg name="name" value="bean2" />
+	</bean>
+	<bean id="bean3" class="app.sandbox03.Bean3">
+		<constructor-arg name="name" value="bean3" />
+	</bean>
+
+</beans>

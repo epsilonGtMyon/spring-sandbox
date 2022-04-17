@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="sandbox06Singleton" class="app.sandbox06.Sandbox06Singleton">
+    	<property name="sandbox06Prototype" ref="sandbox06Prototype"/>
+    	<property name="sandbox06IfPrototype" ref="sandbox06IfPrototype"/>
+	</bean>
+	<bean id="sandbox06Prototype" class="app.sandbox06.Sandbox06Prototype" scope="prototype">
+        <aop:scoped-proxy/>
+	</bean>
+	<bean id="sandbox06IfPrototype" class="app.sandbox06.Sandbox06IfPrototype$Sandbox06IfPrototypeImpl" scope="prototype">
+		<aop:scoped-proxy proxy-target-class="false"/>
+	</bean>
+
+</beans>
