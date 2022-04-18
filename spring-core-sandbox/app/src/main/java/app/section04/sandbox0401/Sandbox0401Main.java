@@ -1,4 +1,4 @@
-package app.sandbox34;
+package app.section04.sandbox0401;
 
 import java.util.Arrays;
 import java.util.GregorianCalendar;
@@ -7,9 +7,9 @@ import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
-import app.sandbox34.inventor.Inventor;
+import app.section04.sandbox0401.inventor.Inventor;
 
-public class Sandbox34Main {
+public class Sandbox0401Main {
 
 	public static void main(String[] args) {
 		ex03();
