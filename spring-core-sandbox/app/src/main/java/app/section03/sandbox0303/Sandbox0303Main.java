@@ -1,15 +1,15 @@
-package app.sandbox33;
+package app.section03.sandbox0303;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class Sandbox33Main {
+public class Sandbox0303Main {
 
 	public static void main(String[] args) {
 
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				Sandbox33Config.class)) {
+				Sandbox0303Config.class)) {
 
-			Sandbox33Service service = context.getBean(Sandbox33Service.class);
+			Sandbox0303Service service = context.getBean(Sandbox0303Service.class);
 			service.execute();
 		}
 	}

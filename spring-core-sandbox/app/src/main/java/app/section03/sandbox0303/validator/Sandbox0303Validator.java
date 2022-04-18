@@ -1,15 +1,15 @@
-package app.sandbox33.validator;
+package app.section03.sandbox0303.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class Sandbox33Validator implements ConstraintValidator<Sandbox33Annotation, String> {
+public class Sandbox0303Validator implements ConstraintValidator<Sandbox0303Annotation, String> {
 
-	private final Sandbox33Xxx sandbox33Xxx;
+	private final Sandbox0303Xxx sandbox33Xxx;
 
 	//spring経由でConstraintValidator がインスタンス化されるようなので
 	//Beanをinjectすることができる。
-	public Sandbox33Validator(Sandbox33Xxx sandbox33Xxx) {
+	public Sandbox0303Validator(Sandbox0303Xxx sandbox33Xxx) {
 		this.sandbox33Xxx = sandbox33Xxx;
 	}
 

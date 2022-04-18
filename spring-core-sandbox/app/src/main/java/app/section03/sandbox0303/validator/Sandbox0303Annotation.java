@@ -1,4 +1,4 @@
-package app.sandbox33.validator;
+package app.section03.sandbox0303.validator;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,8 +10,8 @@ import javax.validation.Payload;
 
 @Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = Sandbox33Validator.class)
-public @interface Sandbox33Annotation {
+@Constraint(validatedBy = Sandbox0303Validator.class)
+public @interface Sandbox0303Annotation {
 
 	String message() default "xxx.";
 

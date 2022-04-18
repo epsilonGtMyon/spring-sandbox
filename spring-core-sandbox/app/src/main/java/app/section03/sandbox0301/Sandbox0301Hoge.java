@@ -1,4 +1,4 @@
-package app.sandbox31;
+package app.section03.sandbox0301;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -8,11 +8,11 @@ import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Sandbox31Hoge {
+public class Sandbox0301Hoge {
 
 	private final ConversionService conversionService;
 
-	public Sandbox31Hoge(ConversionService conversionService) {
+	public Sandbox0301Hoge(ConversionService conversionService) {
 		this.conversionService = conversionService;
 	}
 

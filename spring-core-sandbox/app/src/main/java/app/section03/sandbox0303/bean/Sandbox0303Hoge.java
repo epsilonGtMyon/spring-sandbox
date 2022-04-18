@@ -1,15 +1,15 @@
-package app.sandbox33.bean;
+package app.section03.sandbox0303.bean;
 
 import javax.validation.constraints.NotEmpty;
 
-import app.sandbox33.validator.Sandbox33Annotation;
+import app.section03.sandbox0303.validator.Sandbox0303Annotation;
 
-public class Sandbox33Hoge {
+public class Sandbox0303Hoge {
 
 	@NotEmpty
 	private String value01;
 
-	@Sandbox33Annotation
+	@Sandbox0303Annotation
 	private String value02;
 
 	public String getValue01() {
