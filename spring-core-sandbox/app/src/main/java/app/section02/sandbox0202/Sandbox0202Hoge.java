@@ -1,9 +1,9 @@
-package app.sandbox29;
+package app.section02.sandbox0202;
 
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.ResourceLoader;
 
-public class Sandbox29Hoge implements ResourceLoaderAware {
+public class Sandbox0202Hoge implements ResourceLoaderAware {
 
 	private ResourceLoader resourceLoader;
 

@@ -1,4 +1,4 @@
-package app.sandbox30;
+package app.section02.sandbox0203;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -11,11 +11,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Sandbox30Hoge {
+public class Sandbox0203Hoge {
 
 	private final Resource resource;
 
-	public Sandbox30Hoge(@Value("${resourcePath}") Resource resource) {
+	public Sandbox0203Hoge(@Value("${resourcePath}") Resource resource) {
 		this.resource = resource;
 	}
 

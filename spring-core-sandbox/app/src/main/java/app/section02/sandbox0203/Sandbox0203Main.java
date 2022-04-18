@@ -1,15 +1,15 @@
-package app.sandbox30;
+package app.section02.sandbox0203;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class Sandbox30Main {
+public class Sandbox0203Main {
 
 	public static void main(String[] args) {
 
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-				Sandbox30Config.class)) {
+				Sandbox0203Config.class)) {
 
-			Sandbox30Hoge hoge = context.getBean(Sandbox30Hoge.class);
+			Sandbox0203Hoge hoge = context.getBean(Sandbox0203Hoge.class);
 			hoge.hello();
 		}
 	}
