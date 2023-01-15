@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <script
+      type="text/javascript"
+      th:src="@{/script/AjaxClient.js}"
+      defer
+    ></script>
+    <link rel="stylesheet" th:href="@{/style/common.css}" />
+    <title>Login</title>
+  </head>
+  <body>
+    <form th:action="@{/login}" method="post" id="loginForm">
+      <div id="usernamePasswordArea">
+        <div>
+          <label>
+            ユーザー: <input type="text" id="username" name="username" />
+          </label>
+        </div>
+
+        <div>
+          <label
+            >パスワード: <input type="password" id="password" name="password" />
+          </label>
+        </div>
+      </div>
+      <div id="authCodeArea" class="is-hidden">
+        <div>
+          <label>
+            認証コード: <input type="text" id="authCode" name="authCode" />
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" id="login">ログイン</button>
+    </form>
+    
+    <table class="table">
+       <thead>
+         <tr>
+           <th>ユーザー</th>
+           <th>パスワード</th>
+           <th>認証コード</th>
+         </tr>
+       </thead>
+       <tbody>
+          <tr>
+            <td>user01</td>
+            <td>pass01</td>
+            <td>000001</td>
+          </tr>
+          <tr>
+            <td>user02</td>
+            <td>pass02</td>
+            <td>000002</td>
+          </tr>
+          <tr>
+            <td>user03</td>
+            <td>pass03</td>
+            <td>(認証なし)</td>
+          </tr>
+       </tbody>
+    </table>
+
+    <script>
+      (function () {
+        const usernamePasswordAreaElem = document.getElementById(
+          "usernamePasswordArea"
+        );
+        const authCodeAreaElem = document.getElementById("authCodeArea");
+
+        const loginFormElem = document.getElementById("loginForm");
+        const usernameElem = document.getElementById("username");
+        const passwordElem = document.getElementById("password");
+        const authCodeElem = document.getElementById("authCode");
+
+
+        loginFormElem.addEventListener("submit", async (ev) => {
+          ev.preventDefault();
+
+          const username = usernameElem.value;
+          const password = passwordElem.value;
+          const authCode = authCodeElem.value;
+
+          const response = await AjaxClient.post("./login", {
+            username,
+            password,
+            authCode,
+          });
+
+          if (response.authenticationResult) {
+            window.alert("ログイン成功");
+            location.href = "./top"
+            return;
+          }
+
+          if (response.mfaRequired) {
+            usernamePasswordAreaElem.classList.toggle("is-hidden");
+            authCodeAreaElem.classList.toggle("is-hidden");
+            return;
+          }
+
+          window.alert("ログインに失敗しました。");
+        });
+      })();
+    </script>
+  </body>
+</html>

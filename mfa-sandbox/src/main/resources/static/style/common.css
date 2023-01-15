@@ -1,0 +1,16 @@
+.is-hidden {
+  display: none;
+}
+
+
+.table {
+  border-collapse: collapse;
+}
+
+.table :where(th, td) {
+  border: 1px solid #dbdbdb;
+  background-color: white;
+  white-space: pre-wrap;
+  min-width: 80px;
+  padding: 0 0.5em 0 0.5em;
+}

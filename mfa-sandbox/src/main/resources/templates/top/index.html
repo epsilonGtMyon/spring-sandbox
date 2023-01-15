@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <script
+      type="text/javascript"
+      th:src="@{/script/AjaxClient.js}"
+      defer
+    ></script>
+    <link rel="stylesheet" th:href="@{/style/common.css}" />
+    <title>Top</title>
+  </head>
+  <body>
+    トップページ(認証成功)
+  </body>
+</html>
