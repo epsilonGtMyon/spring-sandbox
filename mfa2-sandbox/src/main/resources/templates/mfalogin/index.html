@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <script
+      type="text/javascript"
+      th:src="@{/script/AjaxClient.js}"
+      defer
+    ></script>
+    <link rel="stylesheet" th:href="@{/style/common.css}" />
+    <title>MFALogin</title>
+  </head>
+  <body>
+    <form th:action="@{/login}" method="post" id="loginForm">
+      <div id="authCodeArea">
+        <div>
+          <label>
+            認証コード: <input type="text" id="authCode" name="authCode" />
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" id="authenticate">認証</button>
+    </form>
+
+    <script>
+      (function () {
+        const loginFormElem = document.getElementById("loginForm");
+        const authCodeElem = document.getElementById("authCode");
+
+        loginFormElem.addEventListener("submit", async (ev) => {
+          ev.preventDefault();
+
+          const authCode = authCodeElem.value;
+
+          const response = await AjaxClient.post("./mfalogin", {
+            authCode,
+          });
+
+          console.log(response);
+          if (response.success) {
+            location.href = "./top";
+            return;
+          }
+
+          window.alert("ログインに失敗しました。");
+        });
+      })();
+    </script>
+  </body>
+</html>
