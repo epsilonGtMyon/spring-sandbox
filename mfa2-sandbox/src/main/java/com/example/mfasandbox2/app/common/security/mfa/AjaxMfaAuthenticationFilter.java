@@ -41,10 +41,10 @@ public class AjaxMfaAuthenticationFilter extends GenericFilterBean {
 	private RequestMatcher requiresAuthenticationRequestMatcher;
 
 	/** 認証成功時のハンドラ */
-	private MfaAuthenticationSuccessHandler mfaAuthenticationSuccessHandler = new JsonBodyMfaAuthenticationSuccessHandler();
+	private MfaAuthenticationSuccessHandler mfaAuthenticationSuccessHandler;
 
 	/** 認証失敗時のハンドラ*/
-	private MfaAuthenticationFailureHandler mfaAuthenticationFailureHandler = new JsonBodyMfaAuthenticationFailureHandler();
+	private MfaAuthenticationFailureHandler mfaAuthenticationFailureHandler;
 
 	public AjaxMfaAuthenticationFilter() {
 		setRequiresAuthenticationRequestMatcher(DEFAULT_ANT_PATH_REQUEST_MATCHER);
@@ -139,10 +139,6 @@ public class AjaxMfaAuthenticationFilter extends GenericFilterBean {
 	}
 
 	//------------------------------------
-
-	public void setFilterProcessesUrl(String filterProcessesUrl) {
-		setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(filterProcessesUrl));
-	}
 
 	public void setRequiresAuthenticationRequestMatcher(RequestMatcher requestMatcher) {
 		this.requiresAuthenticationRequestMatcher = requestMatcher;

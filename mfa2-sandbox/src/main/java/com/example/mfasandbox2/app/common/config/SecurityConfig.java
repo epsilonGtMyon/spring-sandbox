@@ -6,12 +6,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.example.mfasandbox2.app.common.security.AjaxLoginConfigurer;
 import com.example.mfasandbox2.app.common.security.JsonBodyAuthenticationFailureHandler;
 import com.example.mfasandbox2.app.common.security.JsonBodyAuthenticationSuccessHandler;
-import com.example.mfasandbox2.app.common.security.mfa.AjaxMfaAuthenticationFilter;
+import com.example.mfasandbox2.app.common.security.mfa.AjaxMfaAuthenticationConfigurer;
 import com.example.mfasandbox2.app.common.security.users.MyUserDetailsService;
 
 @EnableWebSecurity
@@ -34,11 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		;
 
-		//		http.authenticationProvider(mfaDaoAuthenticationProvider())
-
-		;
-
-		http.addFilterBefore(new AjaxMfaAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+		http.apply(new AjaxMfaAuthenticationConfigurer<>());
 
 	}
 
