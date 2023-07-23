@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>sandbox01</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+    <h1>sandbox01</h1>
+    <form id="form">
+      <div>
+        <label>
+          value01:
+          <input type="text" id="value01" />
+        </label>
+      </div>
+
+      <div>
+        <label>
+          value02:
+          <input type="text" id="value02" />
+        </label>
+      </div>
+
+      <div>
+        <input type="submit" />
+      </div>
+    </form>
+  </body>
+
+  <script th:inline="javascript">
+    const contextPath = /*[[@{''}]]*/ "";
+    (function () {
+      const formElem = document.getElementById("form");
+
+      const value01Elem = document.getElementById("value01");
+      const value02Elem = document.getElementById("value02");
+
+      const registerPath = `${contextPath}/sandbox01/register`;
+
+      formElem.addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+
+        const param = {
+          value01: value01Elem.value,
+          value02: value02Elem.value,
+        };
+
+        const resp = await fetch(registerPath, {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(param),
+        });
+
+        console.log(await resp.json());
+      });
+    })();
+  </script>
+</html>
