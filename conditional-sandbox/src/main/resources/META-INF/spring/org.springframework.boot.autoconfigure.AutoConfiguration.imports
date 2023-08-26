@@ -1,0 +1,3 @@
+epsilongtmyon.lib.autoconfigure.config.BooleanTrueAutoconfiguration
+epsilongtmyon.lib.autoconfigure.config.BooleanFalseAutoconfiguration
+epsilongtmyon.lib.autoconfigure.config.EnvContainsAutoConfiguration
