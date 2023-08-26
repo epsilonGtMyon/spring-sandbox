@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Conditional;
 
 /**
- * true/falseの値だけで有効化を行いConditionalアノテーション
+ * true/falseの値だけで有効化を行うConditionalアノテーション
  */
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
