@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <button id="get">get</button>
+  <button id="post">post</button>
+
+  <script>
+    (function(){
+      const getElem = document.getElementById("get")
+      const postElem = document.getElementById("post")
+
+
+      getElem.addEventListener("click", async () => {
+        const r = await fetch("/sandbox01/helloGet", {
+          method: "GET"
+        })
+
+        console.log(await r.text())
+      })
+      
+      postElem.addEventListener("click", async () => {
+        const r = await fetch("/sandbox01/helloPost", {
+          method: "POST"
+        })
+
+        console.log(await r.text())
+      })
+
+
+    })()
+
+  </script>
+</body>
+</html>
