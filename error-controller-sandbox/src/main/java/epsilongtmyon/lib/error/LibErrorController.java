@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 
+import epsilongtmyon.lib.ControllerDateHolder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -41,15 +42,24 @@ public class LibErrorController extends AbstractErrorController {
 
 	private final ErrorAttributes errorAttributes;
 
-	public LibErrorController(ErrorAttributes errorAttributes, ErrorProperties errorProperties) {
-		this(errorAttributes, errorProperties, Collections.emptyList());
+	private final ControllerDateHolder controllerDateHolder;
+
+	public LibErrorController(
+			ErrorAttributes errorAttributes,
+			ErrorProperties errorProperties,
+			ControllerDateHolder controllerDateHolder) {
+		this(errorAttributes, errorProperties, Collections.emptyList(), controllerDateHolder);
 	}
 
-	public LibErrorController(ErrorAttributes errorAttributes, ErrorProperties errorProperties,
-			List<ErrorViewResolver> errorViewResolvers) {
+	public LibErrorController(
+			ErrorAttributes errorAttributes,
+			ErrorProperties errorProperties,
+			List<ErrorViewResolver> errorViewResolvers,
+			ControllerDateHolder controllerDateHolder) {
 		super(errorAttributes, errorViewResolvers);
 		this.errorAttributes = errorAttributes;
 		this.errorProperties = errorProperties;
+		this.controllerDateHolder = controllerDateHolder;
 	}
 
 	@RequestMapping
@@ -72,12 +82,16 @@ public class LibErrorController extends AbstractErrorController {
 		// message: リクエストにあればそれ、なければ例外のメッセージ
 		// path: 例外が発生したリクエストのパス
 		Map<String, Object> body = getErrorAttributes(request, options);
-		
+
 		// スタックトレースを取り出す
 		// String stackTrace = (String) body.get("trace");
 
 		// 発生した例外そのものを取り出す
 		// Throwable th = getError(request);
+
+		// リクエストスコープの内容もとれる
+		System.out.println("controllerDate");
+		System.out.println(controllerDateHolder.getControllerDate());
 
 		return new ResponseEntity<>(body, status);
 	}
