@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sandbox02</title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <button id="hello1">hello1</button>
+        <button id="hello2">hello2</button>
+        <button id="get">get</button>
+      </div>
+
+      <textarea id="textZone"></textarea>
+
+      <script>
+        (function () {
+          const urlPrefix = '/sandbox02'
+          const hello1Elem = document.getElementById("hello1");
+          const hello2Elem = document.getElementById("hello2");
+          const getElem = document.getElementById("get");
+          const textZone = document.getElementById("textZone");
+
+          hello1Elem.addEventListener("click", async () => {
+            const r = await fetch(`${urlPrefix}/hello1`, {
+              method: "GET",
+            });
+            console.log(await r.text());
+          });
+
+          hello2Elem.addEventListener("click", async () => {
+            const r = await fetch(`${urlPrefix}/hello2`, {
+              method: "GET",
+            });
+            console.log(await r.text());
+          });
+
+          getElem.addEventListener("click", async () => {
+            const r = await fetch(`${urlPrefix}/get`, {
+              method: "GET",
+            });
+
+            textZone.value = await r.text();
+          });
+        })();
+      </script>
+    </div>
+  </body>
+</html>
