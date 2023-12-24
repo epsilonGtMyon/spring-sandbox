@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <title>Sandbox01</title>
+  </head>
+  <body>
+    <h1>sandbox01</h1>
+    <main>
+      <div>
+        <button id="get">Get</button>
+        <button id="post">Post</button>
+        <button id="getCsrfToken">GetCsrfToken</button>
+      </div>
+
+      <div>
+        <div>
+          <label
+            >使用するトークン:
+            <input
+              id="usingToken"
+              th:value="${_csrf.token}"
+              style="width: 1000px"
+            />
+          </label>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>token</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[[${_csrf.token}]]</td>
+            </tr>
+            <tr>
+              <td>[[${_csrf.token}]]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+			<div>
+				<h2>デフォルト(XorCsrfTokenRequestAttributeHandler)の場合</h2>
+				<p>ページをリフレッシュすれば新しくトークンの取得が行われるので異なった値が生成される。</p>
+				<p>上のテーブルを見ればわかるように、一つのリクエストの間は値がキャッシュされてるので同じ値が毎回取得できる。</p>
+				<p>getCsrfTokenを使うと新しいトークンを取得するようにしているが、前の値をインプットのところにセットしてもリクエストは成功する。</p>
+			</div>
+			<div>
+				<h2>CsrfTokenRequestAttributeHandlerの場合</h2>
+				<p>以前の挙動と同じになる</p>
+				<p>ページをリフレッシュしても同じトークンが使われる</p>
+			</div>
+    </main>
+
+    <script type="text/javascript">
+      (function () {
+        const getElem = document.getElementById("get");
+        const postElem = document.getElementById("post");
+        const getCsrfTokenElem = document.getElementById("getCsrfToken");
+
+        const usingTokenElem = document.getElementById("usingToken");
+
+        const csrfHeader = document.querySelector(
+          `meta[name="_csrf_header"]`
+        ).content;
+
+        getElem.addEventListener("click", async () => {
+          const r = await fetch("/sandbox01/get", {
+            method: "get",
+          });
+
+          console.log(await r.text());
+        });
+
+        postElem.addEventListener("click", async () => {
+          const csrfToken = usingTokenElem.value;
+
+          const r = await fetch("/sandbox01/post", {
+            method: "post",
+            headers: {
+              [csrfHeader]: csrfToken,
+            },
+          });
+
+          console.log(await r.text());
+        });
+
+				getCsrfTokenElem.addEventListener("click", async () => {
+          const r = await fetch("/sandbox01/getCsrfToken", {
+            method: "get",
+          });
+
+          const rr = await r.json()
+					usingTokenElem.value = rr.token
+        });
+      })();
+    </script>
+  </body>
+</html>
