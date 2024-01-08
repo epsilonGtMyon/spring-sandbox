@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sandbox01</title>
+</head>
+<body>
+  <h1>sandbox01</h1>
+
+  <div>
+    <button id="my01Exception">my01Exception</button>
+    <button id="my02Exception">my02Exception</button>
+    <button id="my03Exception">my03Exception</button>
+    <button id="my04Exception">my04Exception</button>
+  </div>
+  
+
+  <script>
+    const my01ExceptionElem = document.getElementById("my01Exception")
+    const my02ExceptionElem = document.getElementById("my02Exception")
+    const my03ExceptionElem = document.getElementById("my03Exception")
+    const my04ExceptionElem = document.getElementById("my04Exception")
+
+    my01ExceptionElem.addEventListener("click", async () => {
+      const r = await fetch("/sandbox01/my01Exception", {
+        method: "get"
+      })
+      console.log(await r.text())
+    })
+    
+    my02ExceptionElem.addEventListener("click", async () => {
+      const r = await fetch("/sandbox01/my02Exception", {
+        method: "get"
+      })
+      console.log(await r.text())
+    })
+    
+    my03ExceptionElem.addEventListener("click", async () => {
+      const r = await fetch("/sandbox01/my03Exception", {
+        method: "get"
+      })
+      console.log(await r.text())
+    })
+    
+    my04ExceptionElem.addEventListener("click", async () => {
+      const r = await fetch("/sandbox01/my04Exception", {
+        method: "get"
+      })
+      console.log(await r.text())
+    })
+
+  </script>
+</body>
+</html>
