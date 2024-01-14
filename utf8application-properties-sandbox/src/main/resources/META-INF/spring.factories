@@ -1,0 +1,2 @@
+org.springframework.boot.env.PropertySourceLoader=\
+epsilongtmyon.app.common.spring.factories.Utf8PropertySourceLoader
