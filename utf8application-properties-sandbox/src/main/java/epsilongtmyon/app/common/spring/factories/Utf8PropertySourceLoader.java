@@ -21,6 +21,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
 // StandardConfigDataLocationResolverで読み込まれるようになる
 // そのあとStandardConfigDataReferenceに渡されるのでStandardConfigDataLoaderでこのクラスが使われるようになる。
 
+// OriginTrackedPropertiesLoaderだと値がOriginTrackedValueになってるのでそのあたりの挙動が気になる。
 /**
  * UTF-8 のapplication.propertiesを読み込むためのPropertySourceLoader
  * @author epsil
