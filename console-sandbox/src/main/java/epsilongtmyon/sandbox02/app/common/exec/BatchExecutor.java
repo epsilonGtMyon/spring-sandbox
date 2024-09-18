@@ -3,23 +3,32 @@ package epsilongtmyon.sandbox02.app.common.exec;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BatchExecutor {
+public class BatchExecutor implements BeanFactoryAware {
+
+	private final ApplicationArguments applicationArguments;
 
 	private final BatchMapping batchMapping;
 
-	public BatchExecutor(BatchMapping batchMapping) {
+	private BeanFactory beanFactory;
+
+	public BatchExecutor(ApplicationArguments applicationArguments, BatchMapping batchMapping) {
 		super();
+		this.applicationArguments = applicationArguments;
 		this.batchMapping = batchMapping;
 	}
 
 	public Object execute() {
-		// TODO 動的に取得したい
-		String batchId = "B001";
+		final String batchId = applicationArguments.getOptionValues("batchId").get(0);
 
-		final Object batchEntry = batchMapping.getBatchEntry(batchId);
+		final String batchEntryBeanName = batchMapping.getBatchEntryBeanName(batchId);
+		final Object batchEntry = beanFactory.getBean(batchEntryBeanName);
 
 		try {
 			Class<?> batchClass = batchEntry.getClass();
@@ -35,5 +44,13 @@ public class BatchExecutor {
 			throw new RuntimeException(ex);
 		}
 
+	}
+
+	// ------
+	// BeanFactoryAware
+
+	@Override
+	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+		this.beanFactory = beanFactory;
 	}
 }

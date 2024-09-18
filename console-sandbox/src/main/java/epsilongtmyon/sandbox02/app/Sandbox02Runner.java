@@ -18,6 +18,9 @@ public class Sandbox02Runner implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		// Scheduledのバッチならexecuteを実行することなく即returnしたい
+		// @BatchRunner というConditonalなアノテーション作って 実行対象のバッチがScheduleならfalseにするとか？？
+		
 		executor.execute();
 	}
 

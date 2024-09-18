@@ -5,16 +5,29 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * バッチのIDとBean名のマッピングを保持するクラス
+ */
 @Component
 public class BatchMapping {
 
-	private final ConcurrentHashMap<String, Object> mapping = new ConcurrentHashMap<>();
+	/** バッチのIDとBean名のマッピング */
+	private final ConcurrentHashMap<String, String> mapping = new ConcurrentHashMap<>();
 
-	public void addAll(Map<String, Object> mp) {
+	/**
+	 * マッピングを追加します。
+	 * @param mp マッピング
+	 */
+	public void addAll(Map<String, String> mp) {
 		mapping.putAll(mp);
 	}
 
-	public Object getBatchEntry(String batchId) {
+	/**
+	 * バッチのIDからBean名を取得します。
+	 * @param batchId バッチのID
+	 * @return Beanの名前
+	 */
+	public String getBatchEntryBeanName(String batchId) {
 		return mapping.get(batchId);
 	}
 }
