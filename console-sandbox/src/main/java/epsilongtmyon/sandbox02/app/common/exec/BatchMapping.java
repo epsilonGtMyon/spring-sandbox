@@ -12,22 +12,23 @@ import org.springframework.stereotype.Component;
 public class BatchMapping {
 
 	/** バッチのIDとBean名のマッピング */
-	private final ConcurrentHashMap<String, String> mapping = new ConcurrentHashMap<>();
+	private final ConcurrentHashMap<String, BatchMetadata> mapping = new ConcurrentHashMap<>();
 
 	/**
 	 * マッピングを追加します。
 	 * @param mp マッピング
 	 */
-	public void addAll(Map<String, String> mp) {
+	public void addAll(Map<String, BatchMetadata> mp) {
 		mapping.putAll(mp);
 	}
 
 	/**
-	 * バッチのIDからBean名を取得します。
+	 * バッチのIDからメタデータを取得します。
 	 * @param batchId バッチのID
-	 * @return Beanの名前
+	 * @return メタデータ
 	 */
-	public String getBatchEntryBeanName(String batchId) {
+	public BatchMetadata getMetadata(String batchId) {
 		return mapping.get(batchId);
 	}
+
 }

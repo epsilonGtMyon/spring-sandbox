@@ -3,7 +3,7 @@ package epsilongtmyon.sandbox02.app.batch.b003;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import epsilongtmyon.sandbox02.app.common.exec.Batch;
+import epsilongtmyon.sandbox02.app.common.exec.annotation.Batch;
 
 @Batch("B003")
 @Component

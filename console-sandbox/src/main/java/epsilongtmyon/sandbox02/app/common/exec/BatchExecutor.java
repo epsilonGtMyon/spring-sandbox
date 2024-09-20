@@ -27,7 +27,12 @@ public class BatchExecutor implements BeanFactoryAware {
 	public Object execute() {
 		final String batchId = applicationArguments.getOptionValues("batchId").get(0);
 
-		final String batchEntryBeanName = batchMapping.getBatchEntryBeanName(batchId);
+		final BatchMetadata metadata = batchMapping.getMetadata(batchId);
+		if (metadata.isScheduled()) {
+			return null;
+		}
+
+		final String batchEntryBeanName = metadata.getBatchBeanName();
 		final Object batchEntry = beanFactory.getBean(batchEntryBeanName);
 
 		try {

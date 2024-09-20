@@ -5,7 +5,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import epsilongtmyon.sandbox02.app.common.exec.BatchExecutor;
+import epsilongtmyon.sandbox02.app.common.exec.annotation.BatchRunner;
 
+@BatchRunner
 @Component
 public class Sandbox02Runner implements ApplicationRunner {
 

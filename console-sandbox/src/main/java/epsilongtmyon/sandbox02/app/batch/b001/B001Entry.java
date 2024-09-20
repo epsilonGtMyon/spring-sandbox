@@ -2,7 +2,7 @@ package epsilongtmyon.sandbox02.app.batch.b001;
 
 import org.springframework.stereotype.Component;
 
-import epsilongtmyon.sandbox02.app.common.exec.Batch;
+import epsilongtmyon.sandbox02.app.common.exec.annotation.Batch;
 
 @Batch("B001")
 @Component

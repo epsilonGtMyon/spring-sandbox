@@ -1,4 +1,4 @@
-package epsilongtmyon.sandbox02.app.common.exec;
+package epsilongtmyon.sandbox02.app.common.exec.condition;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 import org.springframework.util.MultiValueMap;
+
+import epsilongtmyon.sandbox02.app.common.exec.annotation.Batch;
 
 // ProfileConditionを参考
 
