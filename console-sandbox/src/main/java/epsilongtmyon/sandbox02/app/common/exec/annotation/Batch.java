@@ -10,6 +10,9 @@ import org.springframework.context.annotation.Conditional;
 
 import epsilongtmyon.sandbox02.app.common.exec.condition.BatchCondition;
 
+/**
+ * バッチ処理のエントリーポイントにつけるアノテーション
+ */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

@@ -13,6 +13,9 @@ import epsilongtmyon.sandbox02.app.common.exec.annotation.Batch;
 
 // ProfileConditionを参考
 
+/**
+ * バッチ処理の有効無効を判定
+ */
 public class BatchCondition implements Condition {
 
 	@Override
