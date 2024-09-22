@@ -2,6 +2,8 @@ package epsilongtmyon.sandbox02.app.common.exec;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -12,6 +14,9 @@ import epsilongtmyon.sandbox02.app.common.exec.annotation.BatchRunner;
 
 @Component
 public class BatchRunnerDefinitionRemoveProcessor implements BeanDefinitionRegistryPostProcessor {
+	
+	/** ロガー */
+	private static final Logger log = LoggerFactory.getLogger(BatchRunnerDefinitionRemoveProcessor.class);
 
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
@@ -25,6 +30,7 @@ public class BatchRunnerDefinitionRemoveProcessor implements BeanDefinitionRegis
 
 		boolean hasScheduled = map.values().stream().anyMatch(x -> x.isScheduled());
 		if (!hasScheduled) {
+			log.info("BatchRunner is not removed.");
 			return;
 		}
 
@@ -33,6 +39,7 @@ public class BatchRunnerDefinitionRemoveProcessor implements BeanDefinitionRegis
 		for (String batchRunnerBeanName : batchRunnerBeanNames) {
 			registry.removeBeanDefinition(batchRunnerBeanName);
 		}
+		log.info("BatchRunner is removed.");
 	}
 
 }
