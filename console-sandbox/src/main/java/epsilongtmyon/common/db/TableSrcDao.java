@@ -1,6 +1,7 @@
 package epsilongtmyon.common.db;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -34,5 +35,23 @@ public class TableSrcDao {
 		final RowMapper<TableSrc> rowMapper = new BeanPropertyRowMapper<>(TableSrc.class);
 
 		return jdbcTemplate.queryForStream(sql, param, rowMapper);
+	}
+
+	public List<TableSrc> findAll() {
+
+		final String sql = """
+				select
+				    ID
+				   ,MESSAGE
+				from
+				   TABLE_SRC
+				order by
+				   ID
+								""";
+
+		final Map<String, ?> param = Collections.emptyMap();
+		final RowMapper<TableSrc> rowMapper = new BeanPropertyRowMapper<>(TableSrc.class);
+
+		return jdbcTemplate.query(sql, param, rowMapper);
 	}
 }
