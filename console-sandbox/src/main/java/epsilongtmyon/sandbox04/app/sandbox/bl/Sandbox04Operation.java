@@ -5,11 +5,11 @@ import java.util.stream.Stream;
 
 import org.springframework.stereotype.Component;
 
+import epsilongtmyon.common.db.TableDest;
+import epsilongtmyon.common.db.TableDestDao;
+import epsilongtmyon.common.db.TableSrc;
+import epsilongtmyon.common.db.TableSrcDao;
 import epsilongtmyon.sandbox04.app.common.template.SimpleDataFlowServiceOperation;
-import epsilongtmyon.sandbox04.app.sandbox.db.TableDest;
-import epsilongtmyon.sandbox04.app.sandbox.db.TableDestDao;
-import epsilongtmyon.sandbox04.app.sandbox.db.TableSrc;
-import epsilongtmyon.sandbox04.app.sandbox.db.TableSrcDao;
 
 @Component
 public class Sandbox04Operation implements SimpleDataFlowServiceOperation<Void, TableSrc, TableDest> {

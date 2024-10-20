@@ -4,8 +4,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import epsilongtmyon.common.db.TableDestDao;
 import epsilongtmyon.sandbox04.app.sandbox.bl.Sandbox04Service;
-import epsilongtmyon.sandbox04.app.sandbox.db.TableDestDao;
 
 @Component
 public class Sandbox04Runner implements ApplicationRunner {

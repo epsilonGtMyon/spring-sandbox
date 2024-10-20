@@ -1,4 +1,4 @@
-package epsilongtmyon.sandbox04.app.sandbox.db;
+package epsilongtmyon.common.db;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package epsilongtmyon.sandbox04.app.sandbox.db;
+package epsilongtmyon.common.db;
 
 import java.util.Collections;
 import java.util.Map;
