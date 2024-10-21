@@ -2,29 +2,19 @@ package epsilongtmyon.sandbox05.app.common.tx;
 
 import java.util.UUID;
 
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-@Component
-public class SimpleManualTransactionStarter {
+public interface SimpleManualTransactionStarter<T extends SimpleManualTransaction> {
 
-	private final PlatformTransactionManager txManager;
-
-	public SimpleManualTransactionStarter(PlatformTransactionManager txManager) {
-		super();
-		this.txManager = txManager;
-	}
-
-	public SimpleManualTransaction start() {
+	default T start() {
 		DefaultTransactionDefinition txDef = new DefaultTransactionDefinition();
 		String txName = UUID.randomUUID().toString();
 		txDef.setName(txName);
 		return start(txDef);
 	}
 
-	public SimpleManualTransaction startRequiredNew() {
+	default T startRequiredNew() {
 		DefaultTransactionDefinition txDef = new DefaultTransactionDefinition();
 		String txName = UUID.randomUUID().toString();
 		txDef.setName(txName);
@@ -32,9 +22,5 @@ public class SimpleManualTransactionStarter {
 		return start(txDef);
 	}
 
-	public SimpleManualTransaction start(TransactionDefinition txDef) {
-		SimpleManualTransaction tx = new SimpleManualTransaction(txManager, txDef);
-		tx.begin();
-		return tx;
-	}
+	T start(TransactionDefinition txDef);
 }

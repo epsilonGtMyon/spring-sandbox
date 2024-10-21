@@ -12,14 +12,14 @@ import epsilongtmyon.common.db.TableDestDao;
 import epsilongtmyon.common.db.TableSrc;
 import epsilongtmyon.common.db.TableSrcDao;
 import epsilongtmyon.sandbox05.app.common.tx.SimpleManualTransaction;
-import epsilongtmyon.sandbox05.app.common.tx.SimpleManualTransactionStarter;
+import epsilongtmyon.sandbox05.app.common.tx.impl.DefaultSimpleManualTransactionStarter;
 
 @Service
 public class Sandbox05Service {
 
 	private final PlatformTransactionManager txManager;
 
-	private final SimpleManualTransactionStarter txStarter;
+	private final DefaultSimpleManualTransactionStarter txStarter;
 
 	private final TableSrcDao tableSrcDao;
 
@@ -27,7 +27,7 @@ public class Sandbox05Service {
 
 	public Sandbox05Service(
 			PlatformTransactionManager txManager,
-			SimpleManualTransactionStarter txStarter,
+			DefaultSimpleManualTransactionStarter txStarter,
 			TableSrcDao tableSrcDao,
 			TableDestDao tableDestDao) {
 		super();
