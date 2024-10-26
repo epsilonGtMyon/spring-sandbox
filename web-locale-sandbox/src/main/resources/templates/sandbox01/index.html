@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sandbox01</title>
+    <script type="text/javascript" th:inline="javascript">
+      const contextPath = /*[[ @{/} ]]*/ "";
+    </script>
+
+    <script type="text/javascript" th:src="@{/script/ajax.js}" defer></script>
+    <script type="text/javascript" th:src="@{./script.js}" defer></script>
+  </head>
+  <body>
+    <h1>sandbox01</h1>
+
+    <div>
+      結果:
+      <textarea id="result">
+
+      </textarea>
+    </div>
+
+    <div>
+      <div>
+        <h2>リクエストヘッダーに指定</h2>
+        <div>
+          <label>
+            lang:
+            <select id="lang">
+              <option value="">なし(デフォルト)</option>
+              <option value="ja">ja</option>
+              <option value="en">en</option>
+              <option value="ch">ch</option>
+              <option value="en-US">en-US</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="hello1Button">hello1(サーバーで未指定)</button>
+        <button id="hello2Button">hello2(サーバー側でロケール受け取り)</button>
+        <button id="hello3Button">hello3(サーバー側で自作処理から取得)</button>
+      </div>
+
+
+      <div>
+        <h2>変更</h2>
+        <div>
+          <label>
+            lang:
+            <select id="setLang">
+              <option value="">なし</option>
+              <option value="ja">ja</option>
+              <option value="en">en</option>
+            </select>
+          </label>
+        </div>
+        <button id="setLocaleButton">ロケール設定</button>
+
+      </div>
+    </div>
+  </body>
+</html>
