@@ -2,7 +2,10 @@ package epsilongtmyon.app.endpoint.sandbox01.api;
 
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +27,9 @@ import jakarta.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/sandbox01")
 public class Sandbox01Controller {
+	
+	/** ロガー */
+	private static final Logger logger = LoggerFactory.getLogger(Sandbox01Controller.class);
 
 	private final MessageSource messageSource;
 
@@ -58,6 +64,7 @@ public class Sandbox01Controller {
 
 	@GetMapping("/hello1")
 	public Hello1Response hello1() {
+		logger.info("hello1 LocaleContextHolder {}", LocaleContextHolder.getLocale());
 		final String message = messageSource.getMessage("sandbox01.hello", null, null);
 		Hello1Response resp = new Hello1Response();
 		resp.setMessage(message);

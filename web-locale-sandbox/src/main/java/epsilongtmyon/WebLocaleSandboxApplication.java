@@ -3,11 +3,14 @@ package epsilongtmyon;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.WebProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+
+import epsilongtmyon.app.common.locale.LocaleContextHolderLoggingFilter;
 
 @SpringBootApplication
 public class WebLocaleSandboxApplication {
@@ -41,4 +44,13 @@ public class WebLocaleSandboxApplication {
 	// その後DispatcherServletのinitContextHoldersでリクエストの処理が行われる際にLocaleResolverの結果が設定され
 	// リクエストの処理が終わるときに処理前の状態に戻している。
 	// なのでDispatcherServletの外側だとLocaleResolverから取得した値の参照ができなさそう..
+
+	@Bean
+	FilterRegistrationBean<LocaleContextHolderLoggingFilter> localeContextHolderLoggingFilter() {
+		FilterRegistrationBean<LocaleContextHolderLoggingFilter> frb = new FilterRegistrationBean<>();
+		frb.setFilter(new LocaleContextHolderLoggingFilter());
+		frb.setName("LocaleContextHolderLoggingFilter");
+
+		return frb;
+	}
 }
