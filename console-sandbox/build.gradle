@@ -29,3 +29,13 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+springBoot {
+    // mainが複数ある時はこれでmainを指定
+    mainClass  = 'epsilongtmyon.sandbox04.Sandbox04Main'
+}
+
+jar {
+    // plain jar は作らない
+    enabled = false
+}
