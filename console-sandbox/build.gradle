@@ -39,3 +39,8 @@ jar {
     // plain jar は作らない
     enabled = false
 }
+
+processResources {
+    // ファイルを除外したいとき
+    exclude('application.properties')
+}
