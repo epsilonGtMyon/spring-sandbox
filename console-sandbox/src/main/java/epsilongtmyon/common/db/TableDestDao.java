@@ -1,23 +1,19 @@
 package epsilongtmyon.common.db;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class TableDestDao {
 
-	private final NamedParameterJdbcTemplate jdbcTemplate;
+	private final JdbcClient jdbcClient;
 
-	public TableDestDao(NamedParameterJdbcTemplate jdbcTemplate) {
+	public TableDestDao(JdbcClient jdbcClient) {
 		super();
-		this.jdbcTemplate = jdbcTemplate;
+		this.jdbcClient = jdbcClient;
 	}
 
 	public List<TableDest> findAll() {
@@ -30,11 +26,9 @@ public class TableDestDao {
 				order by
 				   ID
 								""";
-
-		final Map<String, ?> param = Collections.emptyMap();
-		final RowMapper<TableDest> rowMapper = new BeanPropertyRowMapper<>(TableDest.class);
-
-		return jdbcTemplate.query(sql, param, rowMapper);
+		return jdbcClient.sql(sql)
+				.query(TableDest.class)
+				.list();
 	}
 
 	public int insert(TableDest entity) {
@@ -44,6 +38,8 @@ public class TableDestDao {
 
 		final BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(entity);
 
-		return jdbcTemplate.update(sql, param);
+		return jdbcClient.sql(sql)
+				.paramSource(param)
+				.update();
 	}
 }
