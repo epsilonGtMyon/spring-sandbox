@@ -25,3 +25,10 @@ docker run -p 8080:8080 -e spring.datasource.url=jdbc:h2:tcp://host.docker.inter
 ```
 
 
+
+## メモ
+
+### コンテナからホストを見る
+
+`host.docker.internal` というホスト名でアクセスするとホスト側にアクセスできる。
+

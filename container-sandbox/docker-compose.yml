@@ -12,3 +12,17 @@ services:
       - 8082:81
     environment:
       - H2_OPTIONS=-ifNotExists
+
+  my-app:
+    image: my-container-sandbox-app-image
+    ports:
+      - 8080:8080
+    environment:
+      - TZ=Asia/Tokyo
+      - spring.datasource.url=jdbc:h2:tcp://host.docker.internal/test
+      - spring.data.redis.host=host.docker.internal
+    depends_on:
+      my-redis:
+        condition: service_started
+      my-db:
+        condition: service_started
