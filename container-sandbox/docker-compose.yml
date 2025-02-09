@@ -1,0 +1,14 @@
+version: '3'
+services:
+  my-redis:
+    image: redis:7.4.2
+    ports:
+      - 6379:6379
+  
+  my-db:
+    image: oscarfonts/h2:2.2.224
+    ports:
+      - 9092:1521
+      - 8082:81
+    environment:
+      - H2_OPTIONS=-ifNotExists

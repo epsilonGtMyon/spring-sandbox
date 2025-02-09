@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReqAttr</title>
+  </head>
+  <body>
+    <h1>ReqAttr</h1>
+    <main>
+      <div>
+        <label> count: </label>
+        <div>
+          <span id="count"> 0 </span>
+        </div>
+      </div>
+      <div>
+        <label> accessTimes: </label>
+        <div id="accessTimes"></div>
+      </div>
+      <div>
+        <button id="countUp">countUp</button>
+      </div>
+    </main>
+
+    <script>
+      (async function () {
+        const countElem = document.getElementById("count");
+        const accessTimesElem = document.getElementById("accessTimes");
+        const countUpElem = document.getElementById("countUp");
+
+        async function countUp() {
+          const resp = await fetch("/reqattr/countUp");
+          if (!resp.ok) {
+            return;
+          }
+          const respBody = JSON.parse(await resp.text());
+          console.log(respBody);
+
+          const count = respBody.count;
+          const accessTimes = respBody.accessTimes;
+
+          countElem.textContent = count;
+          while (accessTimesElem.firstChild) {
+            accessTimesElem.removeChild(accessTimesElem.firstChild);
+          }
+          for (const accessTime of accessTimes) {
+            const div = document.createElement("div");
+            div.textContent = accessTime;
+
+            accessTimesElem.append(div);
+          }
+        }
+
+        countUpElem.addEventListener("click", async () => {
+          await countUp();
+        });
+
+        countUp();
+      })();
+    </script>
+  </body>
+</html>

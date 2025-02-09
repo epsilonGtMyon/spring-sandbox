@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emp</title>
+    <style>
+      
+      #empTable {
+        border-collapse: collapse;
+      }
+
+      #empTable :where(th, td) {
+        border: 1px solid #dbdbdb;
+        background-color: white;
+
+        white-space: pre-wrap;
+        min-width: 80px;
+        padding: 0 0.5em 0 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Emp</h1>
+    <main>
+      <div>
+        <div>
+          <label>
+            ID:
+            <input id="empId" maxlength="7"/>
+          </label>
+        </div>
+        <div>
+          <label>
+            姓:
+            <input id="familyName" maxlength="10"/>
+          </label>
+        </div>
+        <div>
+          <label>
+            名:
+            <input id="firstName" maxlength="10"/>
+          </label>
+        </div>
+
+        <button id="registerButton">登録</button>
+      </div>
+      <hr/>
+
+      <div>
+        <button id="reloadButton">再読み込み</button>
+        <table id="empTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>姓</th>
+              <th>名</th>
+              <th>作成日時</th>
+              <th>更新日時</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+          </tbody>
+        </table>
+
+
+      </div>
+
+    </main>
+
+    <script>
+      (async function () {
+        const empIdElem = document.getElementById("empId")
+        const familyNameElem = document.getElementById("familyName")
+        const firstNameElem = document.getElementById("firstName")
+        const registerButtonElem = document.getElementById("registerButton")
+        const reloadButtonElem = document.getElementById("reloadButton")
+        const empTableTbodyElem = document.querySelector("#empTable tbody")
+
+        async function reload() {
+          // クリア
+          while (empTableTbodyElem.firstChild) {
+            empTableTbodyElem.removeChild(empTableTbodyElem.firstChild);
+          }
+          
+          const resp = await fetch("/emp/search", {
+            method: "get"
+          })
+          
+          if(!resp.ok) {
+            window.alert("エラー")
+            return;
+          }
+
+          const bodyText = await resp.text();
+          const body = JSON.parse(bodyText)
+
+          // 結果の反映
+          function createTd(text) {
+            const td = document.createElement("td")
+            td.textContent = text;
+            return td;
+          }
+          
+          for (const detail of body.details) {
+            const tr = document.createElement("tr")
+            tr.append(createTd(detail.empId))
+            tr.append(createTd(detail.familyName))
+            tr.append(createTd(detail.firstName))
+            tr.append(createTd(detail.createdAt))
+            tr.append(createTd(detail.updatedAt))
+            tr.append(createTd(""))
+
+            empTableTbodyElem.append(tr)
+          }
+        }
+
+        registerButtonElem.addEventListener("click", async () => {
+
+          const param = {
+              empId: empIdElem.value,
+              familyName: familyNameElem.value,
+              firstName: firstNameElem.value,
+            };
+
+          const resp = await fetch("/emp/register", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(param)
+          })
+
+          if(!resp.ok) {
+            window.alert("エラー")
+            return;
+          }
+
+          await reload()
+        })
+
+        reloadButtonElem.addEventListener("click", async() => {
+          await reload()
+        })
+      
+      
+        reload()
+      })();
+    </script>
+  </body>
+</html>
