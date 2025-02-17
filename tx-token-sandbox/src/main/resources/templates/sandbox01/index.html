@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandbox01</title>
+    <script type="module" src="/pages/sandbox01.js"></script>
+  </head>
+  <body>
+    <h1>Sandbox01</h1>
+
+    <main>
+      <div>
+        <lavel
+          >windowId:
+          <input id="windowId" style="width: 500px" />
+        </lavel>
+      </div>
+      <div>
+        <lavel
+          >txtoken:
+          <input id="txToken" style="width: 500px" />
+        </lavel>
+      </div>
+      <div>
+        <lavel
+          >status:
+          <span id="status" ></span>
+        </lavel>
+      </div>
+
+      <div>
+        <button id="openWindowButton">ウィンドウオープン</button>
+      </div>
+
+      <div>
+        <button id="publishTxTokenButton">トークン発行</button>
+        <button id="noActionButton">何もしない</button>
+        <button id="checkTxTokenButton">トークンチェック</button>
+      </div>
+      
+      <div>
+        <button id="throwException1Button">例外1</button>
+        <button id="throwException2Button">例外2</button>
+        <button id="throwException3Button">例外3</button>
+      </div>
+    </main>
+  </body>
+</html>
