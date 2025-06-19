@@ -2,6 +2,13 @@
 spring:
   application:
     name: boot3-logging-sandbox
+server:
+  tomcat:
+    accesslog:
+      enabled: true
+      maxDays: 100
+      # 開発中はこれがいいかな
+      directory: "${user.dir}/logs"
 logging:
   # LoggingApplicationListener で設定をしている。
   level:
@@ -11,10 +18,10 @@ logging:
         endpoint:
           sandbox01: INFO
   file:
-    name: "./log/my.log"
+    name: "./logs/my.log"
   logback:
     rollingpolicy:
-      file-name-pattern: "./log/my.log-%d{yyyy-MM-dd-HH-mm}-%i"
+      file-name-pattern: "./logs/my.log-%d{yyyy-MM-dd-HH-mm}-%i"
       # max-historyはファイルの数じゃなくて世代の数
       max-history: 3
       # このサイズを超えると%iの部分が増えていく
