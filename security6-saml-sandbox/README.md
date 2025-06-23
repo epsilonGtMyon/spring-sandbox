@@ -1,4 +1,4 @@
-# saml-sandbox
+# security6-saml-sandbox
 
 - [ドキュメント](https://spring.pleiades.io/spring-security/reference/servlet/saml2/index.html)
 - [ドキュメント JP](https://docs.spring.io/spring-security/reference/servlet/saml2/index.html)

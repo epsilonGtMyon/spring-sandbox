@@ -24,13 +24,17 @@ public class Sandbox01Controller {
 		System.out.println(context);
 
 		Authentication authentication = context.getAuthentication();
-		if (authentication instanceof Saml2Authentication saml2Auth) {
-			Object principal = saml2Auth.getPrincipal();
+		System.out.println(authentication);
+		
+		Object principal = authentication.getPrincipal();
+		System.out.println(principal);
+		
+		if (authentication instanceof Saml2Authentication) {
 			if (principal instanceof Saml2AuthenticatedPrincipal saml2Principal) {
 				String name = saml2Principal.getName();
-				Map<String,List<Object>> attributes = saml2Principal.getAttributes();
+				Map<String, List<Object>> attributes = saml2Principal.getAttributes();
 				List<String> sessionIndexes = saml2Principal.getSessionIndexes();
-				
+
 				System.out.println(name);
 				System.out.println(attributes);
 				System.out.println(sessionIndexes);
