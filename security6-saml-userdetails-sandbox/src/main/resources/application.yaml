@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: security6-saml-userdetails-sandbox
+  security:
+    saml2:
+      relyingparty:
+        # Saml2RelyingPartyProperties クラス
+        registration:
+          # audienceを合わせる必要ある。
+          mock-audience:
+            assertingparty:
+              entityId: urn:example:idp
+              # localhostだとこけるので..
+              metadataUri: "http://[::1]:7000/metadata"
+# メタデータから証明書とれるときはそれを使ってSAMLレスポンスをするので いらない
+#              verification:
+#                credentials:
+#                  - certificate-location: "classpath:idp-public-cert.pem"
+              singlesignon:
+# メタデータから取れるときは指定する必要なさそう
+#                url:  http://localhost:7000/saml/sso
+# SAMLリクエストには署名をしない場合はfalse(これが多いらしい)
+# もし署名が必要なら鍵が必要
+                sign-request: false
+logging:
+  level:
+    root: DEBUG
