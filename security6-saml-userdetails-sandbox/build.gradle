@@ -22,6 +22,7 @@ tasks.withType(Javadoc) {
 repositories {
 	mavenCentral()
 	
+// これを追加する必要ある。
     maven {
         url "https://build.shibboleth.net/nexus/content/repositories/releases/"
     }

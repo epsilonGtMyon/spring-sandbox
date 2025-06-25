@@ -19,10 +19,10 @@ tasks.withType(Javadoc) {
   options.encoding = 'UTF-8'
 }
 
-
 repositories {
 	mavenCentral()
 	
+	// これを追加する必要ある。
     maven {
         url "https://build.shibboleth.net/nexus/content/repositories/releases/"
     }
