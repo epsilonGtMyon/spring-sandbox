@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>upload01</title>
+    <script type="text/javascript" th:inline="javascript">
+      const contextPath = /*[[ @{/} ]]*/ "";
+    </script>
+
+    <script type="module" th:src="@{/upload01/script.js}"></script>
+  </head>
+  <body>
+    <h1>Upload1</h1>
+    <a href="../home">home</a>
+
+    <div>
+      <div>
+        <label>
+          file:
+          <input type="file" id="file">
+        </label>
+      </div>
+
+      <div>
+        <button id="formFileButton">formFile</button>
+        <button id="base64part1Button">Base64その１</button>
+        <button id="base64part2Button">Base64その２</button>
+      </div>
+    </div>
+  </body>
+</html>

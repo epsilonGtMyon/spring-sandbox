@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: fileupdown-sandbox
+  servlet:
+    multipart:
+      max-file-size: 5MB

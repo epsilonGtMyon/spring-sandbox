@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>download1</title>
+    <script type="text/javascript" th:inline="javascript">
+      const contextPath = /*[[ @{/} ]]*/ "";
+    </script>
+
+    <script type="module" th:src="@{/download01/script.js}"></script>
+  </head>
+  <body>
+    <h1>Download1</h1>
+    <a href="../home">home</a>
+    <div>
+      <div>
+        <label>
+          endpoint:
+          <select id="endpointSelect">
+            <option value="datFile" selected>datFile</option>
+            <option value="textFile">textFile</option>
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <button id="fetchButton">fetch</button>
+        <button id="locationHrefButton">location.href</button>
+      </div>
+    </div>
+  </body>
+</html>
