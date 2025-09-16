@@ -64,19 +64,27 @@ public class SecurityConfig {
 				.oauth2Login(c -> {
 
 					// 認証通ったあとどうするか
+					// これがないと遷移しようとしたページに?continueという感じになる。
 					c.defaultSuccessUrl("/home", true);
 					
+					
 
-				})
+				});
 
-				.oauth2Client(Customizer.withDefaults())
+		http
+				.oauth2Client(Customizer.withDefaults());
+		
+		http.logout(c -> {
+			// このアプリ内でのログアウト後の遷移先
+			c.logoutSuccessUrl("/afterlogout").permitAll();
+		});
 
+		http
 				.authorizeHttpRequests(r -> {
 					r.requestMatchers("/home").permitAll();
+					r.requestMatchers("/home2").permitAll();
 					r.anyRequest().authenticated();
-				})
-
-		;
+				});
 		return http.build();
 	}
 }

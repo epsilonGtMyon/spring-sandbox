@@ -20,6 +20,8 @@ public class MvcConfig implements WebMvcConfigurer {
 		};
 
 		addIndex.accept("home");
+		addIndex.accept("home2");
+		addIndex.accept("afterlogout");
 		addIndex.accept("sandbox01");
 	}
 

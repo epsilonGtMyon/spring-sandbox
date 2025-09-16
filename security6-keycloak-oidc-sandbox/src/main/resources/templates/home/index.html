@@ -3,12 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="_csrf" th:content="${_csrf.token}" />
+  <meta name="_csrf_header" th:content="${_csrf.headerName}" />
   <title>Home</title>
 </head>
 <body>
   <h1>Home</h1>
+  <div>
+  	<a href="http://localhost:20080/realms/myrealm/account" target="_blank">myrealmのログイン</a>
+  </div>
   
   <ul>
+  	<li><a href="/home">home</a></li>
+  	<li><a href="/home2">home2</a></li>
   	<li><a href="/sandbox01">sandbox01</a></li>
   </ul>
   

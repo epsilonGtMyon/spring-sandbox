@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="_csrf" th:content="${_csrf.token}" />
   <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-  <title>Sandbox01</title>
+  <title>logout</title>
 </head>
 <body>
-<a href="/home">home</a>
-  <h1>Sandbox01</h1>
+  <h1>logout</h1>
+  ログアウトしました。
   
-  <form th:action="@{/logout}" method="post">
-	<button type="submit">ログアウト</button>
-  </form>
+  <ul>
+  	<li><a href="/home">home</a></li>
+  </ul>
   
 </body>
 </html>
