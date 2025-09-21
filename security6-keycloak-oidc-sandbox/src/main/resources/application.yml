@@ -11,7 +11,7 @@ spring:
             provider: my-keycloak-provider
             client-id: my-client
             # 検証用keycloakのやつなのでハードコーディングしている。
-            client-secret: mMjcupuP0ewSv9c7i8QU20l5nBMEmcKF
+            client-secret: ywyOUelAXim5KxEBqttHXFPj1cbOgrIR
             authorization-grant-type: authorization_code
             #redirectUri: http://localhost:8080/home
             scope: openid,profile
