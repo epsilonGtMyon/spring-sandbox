@@ -22,7 +22,8 @@ public class MyBatisConfiguration {
 		return (configuration) -> {
 			// xmlで設定してたようなことはここでできる。
 
-			configuration.setMapUnderscoreToCamelCase(true);
+			// これはpropertiesでしている。
+			// configuration.setMapUnderscoreToCamelCase(true);
 
 			configuration.addInterceptor(new CommonFieldInterceptor());
 

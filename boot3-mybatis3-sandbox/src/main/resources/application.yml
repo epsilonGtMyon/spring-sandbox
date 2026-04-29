@@ -6,4 +6,7 @@ spring:
     username: sa
     password:
   sql.init.mode: ALWAYS
-      
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
+    returnInstanceForEmptyRow: true
